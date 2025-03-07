@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7j6fpjehyef2"]
+
+[ext_resource type="Script" path="res://GUI/ui.gd" id="1_nbbop"]
+
+[node name="Ui" type="CanvasLayer"]
+script = ExtResource("1_nbbop")
+
+[node name="JoinServerBtn" type="Button" parent="."]
+offset_top = 60.0
+offset_right = 134.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 30
+text = "加入服务器"
+
+[node name="IP" type="LineEdit" parent="."]
+offset_left = 158.0
+offset_top = 60.0
+offset_right = 658.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 30
+text = "127.0.0.1"
+placeholder_text = "连接到的服务器IP地址"
+alignment = 1
+
+[node name="Port" type="LineEdit" parent="."]
+offset_left = 658.0
+offset_top = 60.0
+offset_right = 778.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 30
+text = "8080"
+placeholder_text = "端口"
+alignment = 1
+
+[node name="User_Name_Label" type="Label" parent="."]
+offset_top = 3.0
+offset_right = 158.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 30
+text = "玩家名："
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="User_Name" type="LineEdit" parent="."]
+offset_left = 158.0
+offset_top = 3.0
+offset_right = 778.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 30
+placeholder_text = "请输入玩家名，不输入则默认随机名称"
+alignment = 1
