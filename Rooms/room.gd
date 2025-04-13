@@ -7,9 +7,9 @@ var my_id = ""
 var players = {}
 var my_ready_status = false
 
-@onready var player_list = $UI/PlayerList
-@onready var ready_button = $UI/ReadyButton
-@onready var status_label = $UI/StatusLabel
+@onready var player_list = $UI/VBox/PlayerList
+@onready var ready_button = $UI/VBox/HBox/ReadyButton
+@onready var status_label = $UI/VBox/HBox/StatusLabel
 
 func _ready():
 	# 连接到服务器

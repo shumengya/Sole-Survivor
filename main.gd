@@ -32,10 +32,11 @@ var players = {}
 var game_running = false
 
 # UI 引用
-@onready var position_label = $UI/PlayerInfo/PositionLabel
-@onready var health_label = $UI/PlayerInfo/HealthLabel
-@onready var ammo_label = $UI/PlayerInfo/AmmoLabel
-@onready var item_count_label = $UI/PlayerInfo/ItemLabel  # 修改为正确的节点名称
+@onready var position_label = $UI/PlayerInfo/VBox/PositionLabel
+@onready var health_label = $UI/PlayerInfo/VBox/HealthLabel
+@onready var ammo_label = $UI/PlayerInfo/VBox/AmmoLabel
+@onready var item_count_label = $UI/PlayerInfo/VBox/ItemLabel  
+@onready var online_player_label = $UI/PlayerInfo/VBox/OnlinePlayer
 
 var local_player = null  # 存储本地玩家的引用
 var item_count = 0  # 跟踪道具数量
@@ -43,6 +44,8 @@ var item_count = 0  # 跟踪道具数量
 @onready var players_node = $Players
 @onready var bullets_node = $Bullets
 @onready var items_node = $Items
+
+
 
 func _ready():
 	# 连接到服务器
@@ -55,6 +58,9 @@ func _ready():
 			"type": "enter_game",
 			"name": Global.player_name
 		}))
+	
+	# 初始化在线玩家数量显示
+	update_online_player_count()
 
 func _process(delta):
 	ws.poll()
@@ -130,6 +136,8 @@ func handle_message(data):
 			if "position" in data:
 				player.position = Vector2(data.position.x, data.position.y)
 			
+			update_online_player_count()
+			
 		"player_joined":
 			if data.id != my_id:
 				var player = spawn_player(data.id, data.color, false)
@@ -144,11 +152,15 @@ func handle_message(data):
 				if "position" in data:
 					player.position = Vector2(data.position.x, data.position.y)
 				
+			update_online_player_count()
+			
 		"player_left":
 			if data.id in players:
 				players[data.id].queue_free()
 				players.erase(data.id)
-				# 只在玩家断开连接时检查游戏结束，而不是在玩家死亡时
+				# 更新在线玩家数量
+				update_online_player_count()
+				# 检查游戏结束
 				check_game_end()
 				
 		"position_update":
@@ -233,3 +245,8 @@ func spawn_player(id, color, is_local):
 	players_node.add_child(player)
 	players[id] = player
 	return player
+
+# 添加更新在线玩家数量的函数
+func update_online_player_count():
+	var count = players.size()
+	online_player_label.text = "在线玩家: %d" % count

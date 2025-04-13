@@ -21,49 +21,50 @@ color = Color(0.792157, 0.839216, 1, 1)
 [node name="PlayerInfo" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 227.0
+offset_bottom = 232.0
+
+[node name="VBox" type="VBoxContainer" parent="UI/PlayerInfo"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PositionLabel" type="Label" parent="UI/PlayerInfo"]
-modulate = Color(0.188235, 0.521569, 1, 1)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 30
-text = "位置: X: 0, Y: 0"
-
-[node name="ItemLabel" type="Label" parent="UI/PlayerInfo"]
-modulate = Color(0.995553, 0.615285, 0.240114, 1)
-layout_mode = 0
-offset_top = 124.0
-offset_right = 195.0
-offset_bottom = 166.0
-theme_override_font_sizes/font_size = 30
-text = "场上道具: 0"
-
-[node name="HealthLabel" type="Label" parent="UI/PlayerInfo"]
+[node name="HealthLabel" type="Label" parent="UI/PlayerInfo/VBox"]
 modulate = Color(1, 0.352941, 1, 1)
-layout_mode = 0
-offset_top = 40.0
-offset_right = 157.0
-offset_bottom = 82.0
+layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "生命值: 100"
 
-[node name="AmmoLabel" type="Label" parent="UI/PlayerInfo"]
+[node name="ItemLabel" type="Label" parent="UI/PlayerInfo/VBox"]
+modulate = Color(0.995553, 0.615285, 0.240114, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "场上道具: 0"
+
+[node name="OnlinePlayer" type="Label" parent="UI/PlayerInfo/VBox"]
+modulate = Color(0.858824, 1, 0.164706, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "在线玩家: 0"
+
+[node name="PositionLabel" type="Label" parent="UI/PlayerInfo/VBox"]
+modulate = Color(0.188235, 0.521569, 1, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "位置: X: 0, Y: 0"
+
+[node name="AmmoLabel" type="Label" parent="UI/PlayerInfo/VBox"]
 modulate = Color(0.36387, 0.83331, 0.0745223, 1)
-layout_mode = 0
-offset_top = 82.0
-offset_right = 157.0
-offset_bottom = 124.0
+layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "剩余弹药: 100"
 
 [node name="AndroidControl" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = -1.0
+offset_right = 1151.0
+offset_bottom = 647.0
 
 [node name="UpBtn" type="Button" parent="UI/AndroidControl"]
 layout_mode = 0
